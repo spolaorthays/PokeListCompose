@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -29,8 +27,6 @@ import com.example.pokekotlinclass.presentation.theme.DarkBlue
 import com.example.pokekotlinclass.presentation.theme.MidnightBlue
 import com.example.pokekotlinclass.presentation.theme.LightPetrolBlue
 import com.example.pokekotlinclass.presentation.theme.LightSteelBlue
-import com.example.pokekotlinclass.presentation.theme.NavyBlue
-import com.example.pokekotlinclass.presentation.theme.PetrolBlue
 
 @Composable
 fun PokeDetails(
@@ -51,13 +47,10 @@ fun PokeDetails(
         )
         AbilitiesItems(abilities = details.abilities)
         TypeItems(types = details.types)
-        Button(
-            modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 8.dp),
-            colors = ButtonDefaults.buttonColors(NavyBlue),
-            onClick = { onClickGoBack() }) {
-            Text(text = "Voltar para listagem", fontSize = 14.sp)
-        }
-
+        ButtonBack(
+            modifier = modifier.align(Alignment.CenterHorizontally),
+            onClickGoBack = onClickGoBack
+        )
     }
 }
 

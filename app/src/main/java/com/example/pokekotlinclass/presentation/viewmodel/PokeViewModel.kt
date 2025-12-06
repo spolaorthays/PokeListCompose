@@ -1,6 +1,5 @@
 package com.example.pokekotlinclass.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,13 +25,16 @@ class PokeViewModel @Inject constructor(private val interactor: PokeInteractor) 
                 val result = interactor.getInitialInformation(offset = 0, limit = 1400)
                 saveResults.value = result
                 pokeState.value = PokeState.Success(entity = result, result.results)
-            } catch (exception: Exception) {
-                pokeState.value = PokeState.Error(message = exception.message.toString())
+            } catch (_: Exception) {
+                pokeState.value = PokeState.Error(message = PokeStrings.listErrorMessage)
             }
         }
     }
 
-    fun searchPokemonInCurrentList(pokemonName: String, currentList: List<PokeIdentificationEntity>): String? {
+    fun searchPokemonInCurrentList(
+        pokemonName: String,
+        currentList: List<PokeIdentificationEntity>
+    ): String? {
         currentList.forEach { (pokeName, _) ->
             if (pokeName == pokemonName) {
                 pokeState.value = PokeState.SearchSuccess(name = pokeName)
@@ -49,8 +51,8 @@ class PokeViewModel @Inject constructor(private val interactor: PokeInteractor) 
                 pokeState.value = PokeState.Loading
                 val result = interactor.getPokemonDetails(pokemonName)
                 pokeState.value = PokeState.DetailsSuccess(entity = result)
-            } catch (exception: Exception) {
-                pokeState.value = PokeState.DetailsError(exception.message.toString())
+            } catch (_: Exception) {
+                pokeState.value = PokeState.DetailsError(message = PokeStrings.detailsErrorMessage)
             }
         }
     }

@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.pokekotlinclass.commons.toUpperFirstChar
 import com.example.pokekotlinclass.domain.entities.PokeIdentificationEntity
 import com.example.pokekotlinclass.presentation.theme.Blue
@@ -108,6 +109,16 @@ private fun SearchComponent(
                 tint = LightSkyBlue
             )
         }
+    }
+}
+
+@Composable
+fun ButtonBack(modifier: Modifier = Modifier, onClickGoBack: () -> Unit) {
+    Button(
+        modifier = modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp),
+        colors = ButtonDefaults.buttonColors(NavyBlue),
+        onClick = { onClickGoBack() }) {
+        Text(text = "Voltar para listagem", fontSize = 16.sp)
     }
 }
 
